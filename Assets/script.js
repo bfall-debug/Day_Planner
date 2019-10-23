@@ -5,7 +5,7 @@ var WorkEnds = 17;
 var TimeSlots = $(".container");
 $("#currentDay").text(time.format('dddd, MMMM Do'));
 
-for (i = WorkStarts; i < WorkEnds; i++) {
+for (i = WorkStarts; i <= WorkEnds; i++) {
     var TimeBlock = moment(i, format)
     var NextTimeBlock = moment(i + 1, format)
 
