@@ -1,18 +1,36 @@
-var WorkHours = 9;
-$TimeSlots = $(".container");
+var format = 'hA'
+var time = moment()
+var WorkStarts = 9;
+var WorkEnds = 17;
+var TimeSlots = $(".container");
 
+for (i = WorkStarts; i < WorkEnds; i++) {
+    var TimeBlock = moment(i, format)
+    var NextTimeBlock = moment(i + 1, format)
 
-for (i = 0; i < WorkHours; i++) {
-    $NewHour = $("<div class='row'>");
+    NewHour = $("<div>");
+    NewHour.addClass("row");
 
-    $Time = $("<div class='col-2 hour'>" +  "</div>");
-    $Time.text(`${i + 9}` + ":00");
+    Hour = $("<div>");
+    Hour.addClass("col-2 hour");
+    Hour.text(TimeBlock.format(format));
 
-    $TimeFrame = $("<input class='col-8'>");
-    $TimeFrame.addClass("future");
+    TimeFrame = $("<input>");
+    TimeFrame.addClass("col-8")
+    if ( time.isBetween(TimeBlock,NextTimeBlock)) {
+        TimeFrame.addClass("present");
+    }
+    else if (time.isAfter(TimeBlock)) {
+        TimeFrame.addClass("past");
+    }
+    
+    else {
+        TimeFrame.addClass("future");
+    }
 
-    $SaveButton = $("<div class='col-2 saveBtn'>");
+    SaveButton = $("<div class='col-2 saveBtn'>");
+    SaveButton.addClass("col-2 saveBtn")
 
-    $NewHour.append($Time,$TimeFrame,$SaveButton);
-    $TimeSlots.append($NewHour);
+    NewHour.append(Hour, TimeFrame, SaveButton);
+    TimeSlots.append(NewHour);
 }
