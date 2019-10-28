@@ -3,9 +3,12 @@ var time = moment()
 var WorkStarts = 9;
 var WorkEnds = 17;
 var TimeSlots = $(".container");
-var  tasks = [];
-tasks = JSON.parse(localStorage.getItem('data'));
-
+var  tasks = ["","","","","","","","",""];
+retrieve = JSON.parse(localStorage.getItem('data'));
+if(retrieve != null){
+    tasks = retrieve;
+}
+console.log(tasks)
 $("#currentDay").text(time.format('dddd, MMMM Do'));
 
 for (i = WorkStarts; i <= WorkEnds; i++) {
